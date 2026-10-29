@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas-bg: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --sidebar-bg: #FFFFFF;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    --border-hover: #CBD5E1;
+  }
+
+  .dark {
+    --canvas-bg: #0B0F19;
+    --card-bg: #131C2E;
+    --sidebar-bg: #080C14;
+    --header-bg: rgba(19, 28, 46, 0.95);
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border-color: #1E293B;
+    --border-hover: #334155;
+  }
+
+  body {
+    background-color: transparent;
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Custom Scrollbar - Adaptive Light & Dark */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Hide scrollbar for clean carousels & tab strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Leaflet Container Styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #F8FAFC !important;
+  font-family: inherit;
+}
+.dark .leaflet-container {
+  background: #0B0F19 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.1) !important;
+  padding: 4px !important;
+}
+.dark .leaflet-popup-content-wrapper {
+  background: #131C2E !important;
+  color: #F8FAFC !important;
+  border-color: #1E293B !important;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.35) !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+.dark .leaflet-popup-tip {
+  background: #131C2E !important;
+}
+
+/* Subtle Shimmer for Skeleton Loading */
+@keyframes fresh-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 37%, #F1F5F9 63%);
+  background-size: 400% 100%;
+  animation: fresh-shimmer 1.6s ease-in-out infinite;
+}
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, #131C2E 25%, #1E293B 37%, #131C2E 63%);
+  background-size: 400% 100%;
+  animation: fresh-shimmer 1.6s ease-in-out infinite;
+}
+
+/* Weather-Based Realistic Ambient Keyframes */
+@keyframes rainFall {
+  0% { transform: translateY(-120px); }
+  100% { transform: translateY(120px); }
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(-15%); }
+  100% { transform: translateX(115%); }
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(-6%); opacity: 0.15; }
+  50% { transform: translateX(6%); opacity: 0.28; }
+  100% { transform: translateX(-6%); opacity: 0.15; }
+}
+
+@keyframes subtleFlash {
+  0%, 93%, 100% { opacity: 0; }
+  95% { opacity: 0.12; }
+  96% { opacity: 0.04; }
+  97% { opacity: 0.20; }
+  98% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  [class*="animate-"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
